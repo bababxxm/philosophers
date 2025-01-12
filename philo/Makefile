@@ -6,7 +6,7 @@
 #    By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 19:44:55 by sklaokli          #+#    #+#              #
-#    Updated: 2025/01/13 06:11:56 by sklaokli         ###   ########.fr        #
+#    Updated: 2025/01/13 06:13:17 by sklaokli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -96,7 +96,7 @@ fclean:
 re:			fclean all
 
 commit:
-			@git add ../.
+			@git add /home/sklaokli/42/cursus/cadet/Rank03/philosophers/.
 			@git commit -m "philosophers"
 
 .PHONY:		all clean fclean re
