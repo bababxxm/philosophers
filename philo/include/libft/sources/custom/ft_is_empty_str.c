@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:47:49 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 13:06:10 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:27:05 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 bool	ft_is_empty_str(char *s)
 {

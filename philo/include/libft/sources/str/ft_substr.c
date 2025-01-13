@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:58:47 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 12:18:25 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:28:46 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 char	*ft_substr(char const *s, unsigned int start, size_t len)
 {

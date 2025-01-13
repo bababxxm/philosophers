@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:59:45 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 12:18:15 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:28:35 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 char	*ft_strmapi(char const *s, char (*f)(unsigned int, char))
 {

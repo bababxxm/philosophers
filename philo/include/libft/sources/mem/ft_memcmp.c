@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:26:42 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 12:19:49 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:27:57 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 int	ft_memcmp(void *dst, const void *src, size_t n)
 {

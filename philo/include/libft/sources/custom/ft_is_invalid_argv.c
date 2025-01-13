@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 12:46:11 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 16:54:42 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:27:08 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 bool	ft_is_invalid_argv(int argc, char *argv[])
 {

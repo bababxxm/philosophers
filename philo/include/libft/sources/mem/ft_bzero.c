@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:23:26 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 12:19:42 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:27:50 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 void	ft_bzero(void *s, size_t n)
 {

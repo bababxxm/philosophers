@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:27:31 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/01/11 21:59:27 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:29:08 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 int	ft_atoi(const char *ptr)
 {

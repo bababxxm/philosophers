@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:59:01 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 12:18:05 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:28:25 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 char	*ft_strjoin(char const *s1, char const *s2)
 {

@@ -6,7 +6,7 @@
 #    By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 19:44:55 by sklaokli          #+#    #+#              #
-#    Updated: 2025/01/13 07:25:05 by sklaokli         ###   ########.fr        #
+#    Updated: 2025/01/13 07:26:24 by sklaokli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ NAME	=	libft
 ## Paths to files
 SRC_DIR	=	sources
 OBJ_DIR	=	objects
-INC_DIR	=	includes
+INC_DIR	=	include
 
 ## Subdirectories
 CHAR_DIR	=	char/

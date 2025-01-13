@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:20:24 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 12:17:06 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:26:32 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 int	ft_isalpha(int c)
 {

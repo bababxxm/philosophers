@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:59:21 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 12:40:21 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:28:15 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 static int	ft_wordcount(char *s, char sep)
 {

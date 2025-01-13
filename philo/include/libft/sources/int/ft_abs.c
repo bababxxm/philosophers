@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/17 13:09:12 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 16:24:52 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:27:25 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 int	ft_abs(int n)
 {

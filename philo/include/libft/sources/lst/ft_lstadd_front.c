@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 16:41:48 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 12:17:35 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:27:31 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 void	ft_lstadd_front(t_list **lst, t_list *new)
 {

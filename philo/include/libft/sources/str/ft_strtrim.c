@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/30 18:59:11 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 12:18:23 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:28:44 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 static	int	istrim(const char c, const char *set)
 {

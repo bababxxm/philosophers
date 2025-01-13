@@ -6,11 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/25 17:27:19 by sklaokli          #+#    #+#             */
-/*   Updated: 2024/12/17 12:18:19 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 07:28:39 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../../includes/libft.h"
+#include "../../include/libft.h"
 
 char	*ft_strnstr(const char *str, const char *find, size_t n)
 {
