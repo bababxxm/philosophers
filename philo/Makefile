@@ -6,19 +6,19 @@
 #    By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 19:44:55 by sklaokli          #+#    #+#              #
-#    Updated: 2025/01/13 07:01:41 by sklaokli         ###   ########.fr        #
+#    Updated: 2025/01/13 07:17:02 by sklaokli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ## Libraries
 NAME	=	philo
-LIBFT	=	$(LIB_DIR)/libft.a
+LIBFT	=	$(LIB_DIR)/libft
 
 ## Paths to files
-SRC_DIR	=	sources
-OBJ_DIR	=	objects
-INC_DIR	=	include
-LIB_DIR	=	include/libft
+SRC_DIR		=	sources
+OBJ_DIR		=	objects
+INC_DIR		=	include
+LIB_DIR		=	include/libft
 
 ## Source files
 SRC			=	$(addprefix $(SRC_DIR)/, $(FILES))
@@ -49,10 +49,10 @@ YELLOW		=	\033[0;33m
 RESET		=	\033[0m
 
 ## Custom ASCII Art for Project Completion
-CREATED := $(shell sed -n \
-		's/^#    Created: \([0-9]\{4\}\/[0-9]\{2\}\/[0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}\).*/\1/p' Makefile)
-UPDATED := $(shell sed -n \
-		's/^#    Updated: \([0-9]\{4\}\/[0-9]\{2\}\/[0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}\).*/\1/p' Makefile)
+CREATED 	:= $(shell sed -n \
+			's/^#    Created: \([0-9]\{4\}\/[0-9]\{2\}\/[0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}\).*/\1/p' Makefile)
+UPDATED 	:= $(shell sed -n \
+			's/^#    Updated: \([0-9]\{4\}\/[0-9]\{2\}\/[0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}\).*/\1/p' Makefile)
 
 ASCII_ART	=	\
 				echo " ________  ___  ___  ___  ___       ________     " ;\
@@ -79,7 +79,7 @@ all:		$(NAME)
 
 $(NAME):	$(LIBFT) $(OBJ) Makefile
 			@ $(CC) $(FLAGS) $(OBJ) $(LIBFT) $(INC) -o $(NAME)
-			@ echo "$(GREEN)Done! philo is now ready.$(RESET)"
+			@ echo "$(GREEN)Done! $(NAME) is now ready.$(RESET)"
 			@ $(ASCII_ART)
 
 $(LIBFT):
@@ -88,12 +88,12 @@ $(LIBFT):
 clean:
 			@ $(RM) -rf $(OBJ_DIR)
 			@ $(MAKE) -sC $(LIB_DIR) clean
-			@ echo "$(CYAN)All philo object files have been cleaned.$(RESET)"
+			@ echo "$(CYAN)All $(NAME) object files have been cleaned.$(RESET)"
 
 fclean:
 			@ $(RM) -rf $(OBJ_DIR) $(NAME)
 			@ $(MAKE) -sC $(LIB_DIR) fclean
-			@ echo "$(CYAN)All philo executable files have been cleaned.$(RESET)"
+			@ echo "$(CYAN)All $(NAME) executable files have been cleaned.$(RESET)"
 
 re:			fclean all
 

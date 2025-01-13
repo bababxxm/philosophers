@@ -6,12 +6,12 @@
 #    By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 19:44:55 by sklaokli          #+#    #+#              #
-#    Updated: 2025/01/13 06:57:06 by sklaokli         ###   ########.fr        #
+#    Updated: 2025/01/13 07:11:36 by sklaokli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 ## Libraries
-NAME	=	libft.a
+NAME	=	libft
 
 ## Paths to files
 SRC_DIR	=	sources
@@ -111,16 +111,16 @@ all:		$(NAME)
 
 $(NAME):	$(OBJ)
 			@ $(LIBC) $(NAME) $(OBJ)
-			@ echo "$(GREEN)Done! libft is now ready.$(RESET)"
+			@ echo "$(GREEN)Done! $(NAME) is now ready.$(RESET)"
 			@ $(LIBFT_ART)
 
 clean:
 			@ $(RM) -rf $(OBJ_DIR)
-			@ echo "$(CYAN)All libft object files have been cleaned.$(RESET)"
+			@ echo "$(CYAN)All $(NAME) object files have been cleaned.$(RESET)"
 
 fclean:
 			@ $(RM) -rf $(OBJ_DIR) $(NAME)
-			@ echo "$(CYAN)All libft executable files have been cleaned.$(RESET)"
+			@ echo "$(CYAN)All $(NAME) executable files have been cleaned.$(RESET)"
 
 re:			fclean all
 
