@@ -6,14 +6,14 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/11 13:41:01 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/01/12 23:51:40 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/01/13 06:18:23 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
 
-# include "../libft/includes/libft.h"
+# include "libft/includes/libft.h"
 
 # include <pthread.h>
 # include <sys/time.h>

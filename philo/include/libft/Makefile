@@ -6,7 +6,7 @@
 #    By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 19:44:55 by sklaokli          #+#    #+#              #
-#    Updated: 2025/01/13 06:05:20 by sklaokli         ###   ########.fr        #
+#    Updated: 2025/01/13 06:57:06 by sklaokli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -98,7 +98,6 @@ LIBFT_ART	=	\
 				echo "By: sklaokli <sklaokli@student.42.fr>" ;\
 				echo "Created: $(CREATED)" ;\
 				echo "Last Updated: $(UPDATED)" ;
-
 
 ## Targets
 $(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
