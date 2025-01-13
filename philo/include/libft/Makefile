@@ -6,7 +6,7 @@
 #    By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 19:44:55 by sklaokli          #+#    #+#              #
-#    Updated: 2025/01/13 07:11:36 by sklaokli         ###   ########.fr        #
+#    Updated: 2025/01/13 07:25:05 by sklaokli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -86,7 +86,7 @@ CREATED	:=	$(shell sed -n \
 UPDATED	:=	$(shell sed -n \
 			's/^#    Updated: \([0-9]\{4\}\/[0-9]\{2\}\/[0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}\).*/\1/p' Makefile)
 
-LIBFT_ART	=	\
+ASCII_ART	=	\
 				echo " ___       ___  ________  ________ _________   " ;\
 				echo "|\\  \\     |\\  \\|\\   __  \\|\\  _____\\\\___   ___\\ " ;\
 				echo "\\ \\  \\    \\ \\  \\ \\  \\|\\ /\\ \\  \\__/\\|___ \\  \\_| " ;\
@@ -112,7 +112,7 @@ all:		$(NAME)
 $(NAME):	$(OBJ)
 			@ $(LIBC) $(NAME) $(OBJ)
 			@ echo "$(GREEN)Done! $(NAME) is now ready.$(RESET)"
-			@ $(LIBFT_ART)
+			@ $(ASCII_ART)
 
 clean:
 			@ $(RM) -rf $(OBJ_DIR)
