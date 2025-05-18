@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:18:12 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/18 15:26:07 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/18 16:30:58 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,8 @@ bool	init_fork_and_philo(t_table *t)
 	while (idx < t->philo_count)
 	{
 		t->fork[idx].id = idx;
+		if (!mutex_mode(&t->fork[idx].mutex, INIT))
+			return (false);
 		t->philo[idx].id = idx;
 		t->philo[idx].table = t;
 		t->philo[idx].meals_count = 0;
@@ -47,7 +49,7 @@ bool	init_fork_and_philo(t_table *t)
 bool	init_table(t_table *t)
 {
 	t->is_finished = false;
-	t->time_since_start = 0;
+	t->since_start = 0;
 	t->philo = malloc(sizeof(t_philo) * t->philo_count);
 	if (!t->philo)
 		return (false);

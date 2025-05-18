@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:49:55 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/18 15:01:31 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/18 16:54:38 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,7 +102,7 @@ typedef struct s_table
 	size_t	time_to_eat;
 	size_t	time_to_sleep;
 	size_t	meals_for_each;
-	size_t	time_since_start;
+	size_t	since_start;
 	bool	is_finished;
 	t_mtx	*control;
 }	t_table;
@@ -112,7 +112,7 @@ bool	init(t_table *t, int ac, char **av);
 bool	mutex_mode(t_mtx *mutex, int mode);
 bool	pthread_mode(t_pth *thread, void *(*f)(void *), void *data, int mode);
 void	*philo_routine(void *params);
-bool	philo_stimulation(t_table *t);
+bool	start_stimulation(t_table *t);
 
 size_t	get_time_ms(void);
 void	sleep_ms(size_t ms);
