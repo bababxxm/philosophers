@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:18:12 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/16 22:39:21 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/18 15:26:07 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,41 @@
 	5. meals_for_each      (optional, default = 0)
 */
 
+bool	init_fork_and_philo(t_table *t)
+{
+	size_t	idx;
+
+	idx = 0;
+	while (idx < t->philo_count)
+	{
+		t->fork[idx].id = idx;
+		t->philo[idx].id = idx;
+		t->philo[idx].table = t;
+		t->philo[idx].meals_count = 0;
+		t->philo[idx].since_last_meal = 0;
+		t->philo[idx].fork[0] = idx;
+		if (idx == 0)
+			t->philo[idx].fork[1] = t->philo_count - 1;
+		else
+			t->philo[idx].fork[1] = idx - 1;
+		t->philo[idx].is_full = false;
+		idx++;
+	}
+	return (true);
+}
+
 bool	init_table(t_table *t)
 {
-	(void)t;
+	t->is_finished = false;
+	t->time_since_start = 0;
+	t->philo = malloc(sizeof(t_philo) * t->philo_count);
+	if (!t->philo)
+		return (false);
+	t->fork = malloc(sizeof(t_fork) * t->philo_count);
+	if (!t->fork)
+		return (false);
+	if (!init_fork_and_philo(t))
+		return (false);
 	return (true);
 }
 

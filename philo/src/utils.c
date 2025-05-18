@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:28:30 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/16 21:28:35 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/18 13:50:08 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ long	ft_atol(const char *ptr)
 	while (*ptr >= '0' && *ptr <= '9')
 	{
 		res = (res * 10) + (*ptr - '0');
+		if (res < INT_MIN || res > INT_MAX)
+			return (-1);
 		ptr++;
 	}
 	return (sign * res);
@@ -76,4 +78,17 @@ char	*ft_strskip(char *s, char *set, bool is_in_set)
 			s++;
 		return (s);
 	}
+}
+
+size_t	get_time_ms(void)
+{
+	struct timeval	tv;
+
+	gettimeofday(&tv, NULL);
+	return (tv.tv_sec * 1000);
+}
+
+void	sleep_ms(size_t ms)
+{
+	usleep(ms * 1000);
 }

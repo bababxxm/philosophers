@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:49:45 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/16 22:48:28 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/18 15:27:59 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,8 +35,14 @@ int	main(int ac, char **av)
 
 	if (!init(&t, ac - 1, av + 1))
 		return (1);
+	philo_stimulation(&t);
 	return (0);
 }
+
+	// if (!philo_stimulation(&t))
+		// return (end_stimulation(&t), 1);
+	// monitor_stimulation(&t);
+	// end_stimulation(&t);
 
 /*
 

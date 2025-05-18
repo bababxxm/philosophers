@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:49:55 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/16 22:43:13 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/18 15:01:31 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@
 # define WHITESPACE "\t\n\v\f\r "
 
 # define MAX_PHILO 200
+# define MIN_MS 60
 # define MAX_MS 800
 
 typedef struct s_philo	t_philo;
@@ -37,11 +38,26 @@ typedef struct s_table	t_table;
 typedef pthread_mutex_t	t_mtx;
 typedef pthread_t		t_pth;
 
+typedef enum e_philo_errno
+{
+	PERR_ARG_NON,
+	PERR_ARG_INV,
+	PERR_ARG_EMT,
+	PERR_NBR_NON,
+	PERR_PHI_CNT,
+	PERR_TME_DIE,
+	PERR_TME_EAT,
+	PERR_TME_SLP,
+	PERR_MLS_CNT,
+	PERR_MTX_MDE,
+	PERR_PTH_MDE
+}	t_philo_errno;
+
 typedef enum e_mutex_mode
 {
+	INIT,
 	LOCK,
 	UNLOCK,
-	INIT,
 	DESTROY
 }	t_mutex_mode;
 
@@ -79,8 +95,8 @@ typedef struct s_philo
 
 typedef struct s_table
 {
-	t_philo	*philo;
 	t_fork	*fork;
+	t_philo	*philo;
 	size_t	philo_count;
 	size_t	time_to_die;
 	size_t	time_to_eat;
@@ -88,11 +104,18 @@ typedef struct s_table
 	size_t	meals_for_each;
 	size_t	time_since_start;
 	bool	is_finished;
+	t_mtx	*control;
 }	t_table;
 
 bool	parser(t_table *t, int ac, char **av);
 bool	init(t_table *t, int ac, char **av);
 bool	mutex_mode(t_mtx *mutex, int mode);
 bool	pthread_mode(t_pth *thread, void *(*f)(void *), void *data, int mode);
+void	*philo_routine(void *params);
+bool	philo_stimulation(t_table *t);
+
+size_t	get_time_ms(void);
+void	sleep_ms(size_t ms);
+bool	broadcast(int perrno);
 
 #endif

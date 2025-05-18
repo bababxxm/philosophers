@@ -6,7 +6,7 @@
 #    By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 19:44:55 by sklaokli          #+#    #+#              #
-#    Updated: 2025/05/16 22:42:56 by sklaokli         ###   ########.fr        #
+#    Updated: 2025/05/18 15:29:05 by sklaokli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,8 @@ FILES		:=	\
 				parser.c \
 				init.c \
 				mode.c \
+				routine.c \
+				stimulation.c \
 				utils.c
 
 SRC			:=	$(addprefix $(SRC_DIR)/, $(FILES))
