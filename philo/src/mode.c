@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:28:18 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/17 18:03:35 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:27:40 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -112,19 +112,19 @@ static bool	mutex_handler(int status, int mode)
 	if (status == 0)
 		return (true);
 	else if (status == EINVAL && (mode == LOCK || mode == UNLOCK))
-		return (false);
+		return (printf("Invalid argument\n"), false);
 	else if (status == EINVAL && mode == INIT)
-		return (false);
+		return (printf("Invalid argument\n"), false);
 	else if (status == EDEADLK)
-		return (false);
+		return (printf("Deadlock detected\n"), false);
 	else if (status == EPERM)
-		return (false);
+		return (printf("Operation not permitted\n"), false);
 	else if (status == ENOMEM)
-		return (false);
+		return (printf("Out of memory\n"), false);
 	else if (status == EBUSY)
-		return (false);
+		return (printf("Resource busy"), false);
 	else
-		return (true);
+		return (printf("Unknown error\n"), false);
 }
 
 static bool	pthread_handler(int status, int mode)
@@ -132,17 +132,17 @@ static bool	pthread_handler(int status, int mode)
 	if (status == 0)
 		return (true);
 	else if (status == EAGAIN)
-		return (false);
+		return (printf("Resource temporarily unavailable\n"), false);
 	else if (status == EPERM)
-		return (false);
+		return (printf("Operation not permitted\n"), false);
 	else if (status == EINVAL && mode == CREATE)
-		return (false);
+		return (printf("Invalid argument\n"), false);
 	else if (status == EINVAL && (mode == JOIN || mode == DETACH))
-		return (false);
+		return (printf("Invalid argument\n"), false);
 	else if (status == ESRCH)
-		return (false);
+		return (printf("No such thread\n"), false);
 	else if (status == EDEADLK)
-		return (false);
+		return (printf("Deadlock detected\n"), false);
 	else
-		return (true);
+		return (false);
 }

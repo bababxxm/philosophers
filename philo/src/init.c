@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:18:12 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/18 16:30:58 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:39:17 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,8 @@ bool	init_table(t_table *t)
 {
 	t->is_finished = false;
 	t->since_start = 0;
+	if (!mutex_mode(&t->control, INIT))
+		return (false);
 	t->philo = malloc(sizeof(t_philo) * t->philo_count);
 	if (!t->philo)
 		return (false);

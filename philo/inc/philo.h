@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:49:55 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/18 16:54:38 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/20 12:38:35 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,6 +97,7 @@ typedef struct s_table
 {
 	t_fork	*fork;
 	t_philo	*philo;
+	t_mtx	control;
 	size_t	philo_count;
 	size_t	time_to_die;
 	size_t	time_to_eat;
@@ -104,7 +105,6 @@ typedef struct s_table
 	size_t	meals_for_each;
 	size_t	since_start;
 	bool	is_finished;
-	t_mtx	*control;
 }	t_table;
 
 bool	parser(t_table *t, int ac, char **av);
