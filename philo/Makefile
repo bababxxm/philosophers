@@ -6,95 +6,72 @@
 #    By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 19:44:55 by sklaokli          #+#    #+#              #
-#    Updated: 2025/01/13 07:24:47 by sklaokli         ###   ########.fr        #
+#    Updated: 2025/05/27 22:14:31 by sklaokli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-## Libraries
-NAME	=	philo
-LIBFT	=	$(LIB_DIR)/libft
+NAME		:=	philo
 
-## Paths to files
-SRC_DIR		=	sources
-OBJ_DIR		=	objects
-INC_DIR		=	include
-LIB_DIR		=	include/libft
+SRC_DIR		:=	src
+OBJ_DIR		:=	obj
+INC_DIR		:=	inc
 
-## Source files
-SRC			=	$(addprefix $(SRC_DIR)/, $(FILES))
-FILES		=	main.c parser.c init.c philo.c clear.c utils.c
+INC			:=	-I$(INC_DIR)
+DEPS		:=	$(INC_DIR)/philo.h
 
-## Include files
-INC			=	-I $(INC_DIR) -I $(LIB_DIR)/includes
+FILES		:=	\
+				main.c \
+				parser.c \
+				init.c \
+				mode.c \
+				routine.c \
+				stimulation.c \
+				utils.c
 
-## Object files
-OBJ			=	$(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
+SRC			:=	$(addprefix $(SRC_DIR)/, $(FILES))
+OBJ			:=	$(addprefix $(OBJ_DIR)/, $(FILES:.c=.o))
 
-## Total number of files
-COMPILED	=	0
-TOTAL_FILES	=	$(words $(OBJ))
+COMPILED	:=	0
+TOTAL_FILES	:=	$(words $(OBJ))
 
-## Commands
-RM			=	rm -f
-CC			=	cc
-LIBC		=	ar rcs
-FLAGS		=	-Wall -Wextra -Werror
+CYAN		:=	\033[1;36m
+GREEN		:=	\033[1;32m
+RED			:=	\033[1;31m
+BLUE		:=	\033[1;34m
+YELLOW		:=	\033[1;33m
+RESET		:=	\033[0m
 
-## Color Codes
-CYAN		=	\033[0;36m
-GREEN		=	\033[0;32m
-RED			=	\033[0;31m
-BLUE		=	\033[0;34m
-YELLOW		=	\033[0;33m
-RESET		=	\033[0m
+CC			:=	cc
+RM			:=	rm -f
+AR			:=	ar rcs
+WFLAGS		:=	-Wall -Wextra -Werror -g
+VFLAGS		:=	--tool=helgrind
+FDFLAGS		:=	--track-fds=yes --trace-children=yes
 
-## Custom ASCII Art for Project Completion
-CREATED 	:= $(shell sed -n \
-			's/^#    Created: \([0-9]\{4\}\/[0-9]\{2\}\/[0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}\).*/\1/p' Makefile)
-UPDATED 	:= $(shell sed -n \
-			's/^#    Updated: \([0-9]\{4\}\/[0-9]\{2\}\/[0-9]\{2\} [0-9]\{2\}:[0-9]\{2\}:[0-9]\{2\}\).*/\1/p' Makefile)
-
-ASCII_ART	=	\
-				echo " ________  ___  ___  ___  ___       ________     " ;\
-				echo "|\\   __  \\|\\  \\|\\  \\|\\  \\|\\  \\     |\\   __  \\    " ;\
-				echo "\\ \\  \\|\\  \\ \\  \\ \\  \\ \\  \\ \\  \\    \\ \\  \\|\\  \\   " ;\
-				echo " \\ \\   ____\\ \\   __  \\ \\  \\ \\  \\    \\ \\  \\ \\  \\  " ;\
-				echo "  \\ \\  \\___|\\ \\  \\ \\  \\ \\  \\ \\  \\____\\ \\  \\_\\  \\ " ;\
-				echo "   \\ \\__\\    \\ \\__\\ \\__\\ \\__\\ \\_______\\ \\_______\\" ;\
-				echo "    \\|__|     \\|__|\\|__|\\|__|\\|_______|\\|_______|" ;\
-				echo "" ;\
-				echo "By: sklaokli <sklaokli@student.42.fr>" ;\
-				echo "Created: $(CREATED)" ;\
-				echo "Last Updated: $(UPDATED)"
-
-## Targets
-$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c
+$(OBJ_DIR)/%.o:	$(SRC_DIR)/%.c $(DEPS)
 				@ mkdir -p $(dir $@)
 				@ $(eval COMPILED=$(shell echo $$(($(COMPILED)+1))))
 				@ PERCENT=$$(($(COMPILED)*100/$(TOTAL_FILES))); \
 				echo "$(BLUE)[$(COMPILED)/$(TOTAL_FILES)] Compiling $< ($$PERCENT%)$(RESET)\r"; \
-				$(CC) $(FLAGS) -I $(INC_DIR) -c $< -o $@
+				$(CC) $(WFLAGS) $(INC) -c $< -o $@
 
 all:		$(NAME)
 
-$(NAME):	$(LIBFT) $(OBJ) Makefile
-			@ $(CC) $(FLAGS) $(OBJ) $(LIBFT) $(INC) -o $(NAME)
-			@ echo "$(GREEN)Done! $(NAME) is now ready.$(RESET)"
-			@ $(ASCII_ART)
+$(NAME):	Makefile $(OBJ)
+			@ $(CC) $(WFLAGS) $(OBJ) -o $(NAME)
+			@ echo "$(GREEN)[OK] $(NAME) built succesfully.$(RESET)"
 
-$(LIBFT):
-			@ $(MAKE) -sC $(LIB_DIR)
-
-clean:
+clean:		Makefile
 			@ $(RM) -rf $(OBJ_DIR)
-			@ $(MAKE) -sC $(LIB_DIR) clean
-			@ echo "$(CYAN)All $(NAME) object files have been cleaned.$(RESET)"
+			@ echo "$(CYAN)$(NAME) object files cleaned.$(RESET)"
 
-fclean:
+fclean:		Makefile
 			@ $(RM) -rf $(OBJ_DIR) $(NAME)
-			@ $(MAKE) -sC $(LIB_DIR) fclean
-			@ echo "$(CYAN)All $(NAME) executable files have been cleaned.$(RESET)"
+			@ echo "$(CYAN)$(NAME) executable files cleaned.$(RESET)"
 
-re:			fclean all
+valgrind:	Makefile
+			valgrind $(VFLAGS) ./$(NAME)
+
+re:			Makefile fclean all
 
 .PHONY:		all clean fclean re
