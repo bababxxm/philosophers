@@ -6,13 +6,12 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 14:03:51 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/28 14:38:13 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/28 18:37:40 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-void	ft_putnbr_fd(int num, int fd);
 bool	print_action(t_philo *p, char *text, t_mtx *ctl);
 
 bool	start_stimulation(t_table *t)
@@ -83,19 +82,24 @@ void	monitor_stimulation(t_table *t)
 			}
 			idx++;
 		}
-		usleep(500);
+		usleep(100);
 	}
 }
 
 bool	print_action(t_philo *p, char *text, t_mtx *ctl)
 {
 	size_t	now;
+	size_t	timestamp;
 
 	if (stimulation_is_finished(p->table, ctl))
 		return (false);
 	mutex_mode(ctl, LOCK);
-	now = get_time_ms() - p->table->since_start;
-	printf("%zu %zu %s\n", now, p->id, text);
+	now = get_time_ms();
+	if (now < p->table->since_start)
+		timestamp = 0;
+	else
+		timestamp = now - p->table->since_start;
+	printf("%zu %zu %s\n", timestamp, p->id, text);
 	mutex_mode(ctl, UNLOCK);
 	return (true);
 }

@@ -6,7 +6,7 @@
 #    By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2024/11/18 19:44:55 by sklaokli          #+#    #+#              #
-#    Updated: 2025/05/27 22:14:31 by sklaokli         ###   ########.fr        #
+#    Updated: 2025/05/28 18:34:51 by sklaokli         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -44,7 +44,7 @@ RESET		:=	\033[0m
 CC			:=	cc
 RM			:=	rm -f
 AR			:=	ar rcs
-WFLAGS		:=	-Wall -Wextra -Werror -g
+WFLAGS		:=	-Wall -Wextra -Werror
 VFLAGS		:=	--tool=helgrind
 FDFLAGS		:=	--track-fds=yes --trace-children=yes
 

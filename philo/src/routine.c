@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 13:48:06 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/28 14:34:59 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/28 18:37:45 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,12 +15,7 @@
 bool	print_action(t_philo *p, char *text, t_mtx *ctl);
 bool	stimulation_is_finished(t_table	*t, t_mtx *ctl);
 
-void	philo_think(t_philo *p, t_mtx *ctl)
-{
-	print_action(p, "is thinking", ctl);
-}
-
-void	take_forks(t_philo *p, t_mtx *left, t_mtx *right, t_mtx *ctl)
+static void	take_forks(t_philo *p, t_mtx *left, t_mtx *right, t_mtx *ctl)
 {
 	if (p->id % 2 == 0)
 	{
@@ -38,7 +33,7 @@ void	take_forks(t_philo *p, t_mtx *left, t_mtx *right, t_mtx *ctl)
 	}
 }
 
-bool	philo_eat(t_philo *p, t_mtx *ctl)
+static bool	philo_eat(t_philo *p, t_mtx *ctl)
 {
 	t_fork	*f;
 
@@ -56,10 +51,19 @@ bool	philo_eat(t_philo *p, t_mtx *ctl)
 	return (true);
 }
 
-void	philo_sleep(t_philo *p, t_mtx *ctl)
+static void	philo_sleep(t_philo *p, t_mtx *ctl)
 {
+	if (stimulation_is_finished(p->table, ctl))
+		return ;
 	print_action(p, "is sleeping", ctl);
 	sleep_ms(p->table->time_to_sleep);
+}
+
+static void	philo_think(t_philo *p, t_mtx *ctl)
+{
+	if (stimulation_is_finished(p->table, ctl))
+		return ;
+	print_action(p, "is thinking", ctl);
 }
 
 void	*philo_routine(void *params)

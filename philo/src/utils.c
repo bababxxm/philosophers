@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:28:30 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/28 14:35:47 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/28 17:48:02 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ size_t	get_time_ms(void)
 	struct timeval	tv;
 
 	gettimeofday(&tv, NULL);
-	return (tv.tv_sec * 1000 + tv.tv_usec / 1000);
+	return ((size_t)tv.tv_sec * 1000 + (size_t)tv.tv_usec / 1000);
 }
 
 void	sleep_ms(size_t ms)
