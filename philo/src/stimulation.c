@@ -6,12 +6,13 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 14:03:51 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/27 22:54:54 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:38:13 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
+void	ft_putnbr_fd(int num, int fd);
 bool	print_action(t_philo *p, char *text, t_mtx *ctl);
 
 bool	start_stimulation(t_table *t)
@@ -41,7 +42,7 @@ bool	start_stimulation(t_table *t)
 	return (true);
 }
 
-bool	is_finished(t_philo *p, t_table *t)
+bool	set_stimulation_finished(t_philo *p, t_table *t)
 {
 	bool	is_dead;
 
@@ -51,33 +52,50 @@ bool	is_finished(t_philo *p, t_table *t)
 	return (is_dead == true);
 }
 
+bool	stimulation_is_finished(t_table	*t, t_mtx *ctl)
+{
+	bool	status;
+
+	mutex_mode(ctl, LOCK);
+	status = t->is_finished;
+	mutex_mode(ctl, UNLOCK);
+	return (status);
+}
+
 void	monitor_stimulation(t_table *t)
 {
 	size_t	idx;
 	t_philo	*p;
 
-	while (t->is_finished != true)
+	while (1)
 	{
 		idx = 0;
 		while (idx < t->philo_count)
 		{
 			p = &t->philo[idx];
-			if (is_finished(p, t) == true)
+			if (set_stimulation_finished(p, t) == true)
 			{
 				print_action(p, "is dead", &t->control);
 				mutex_mode(&t->control, LOCK);
 				t->is_finished = true;
 				mutex_mode(&t->control, UNLOCK);
-				break ;
+				return ;
 			}
 			idx++;
 		}
-		sleep_ms(100);
+		usleep(500);
 	}
 }
 
-void	end_stimulation(t_table *t)
+bool	print_action(t_philo *p, char *text, t_mtx *ctl)
 {
-	(void)t;
-	return ;
+	size_t	now;
+
+	if (stimulation_is_finished(p->table, ctl))
+		return (false);
+	mutex_mode(ctl, LOCK);
+	now = get_time_ms() - p->table->since_start;
+	printf("%zu %zu %s\n", now, p->id, text);
+	mutex_mode(ctl, UNLOCK);
+	return (true);
 }

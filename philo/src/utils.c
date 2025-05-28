@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:28:30 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/27 21:28:00 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/28 14:35:47 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,5 +90,9 @@ size_t	get_time_ms(void)
 
 void	sleep_ms(size_t ms)
 {
-	usleep(ms * 1000);
+	size_t	start;
+
+	start = get_time_ms();
+	while (get_time_ms() - start < ms)
+		usleep(100);
 }
