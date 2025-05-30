@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:49:55 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/27 21:39:10 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:05:20 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@
 # define MAX_PHILO 200
 # define MIN_MS 60
 # define MAX_MS 800
+# define MAX_MEALS 200
 
 typedef struct s_philo	t_philo;
 typedef struct s_table	t_table;
@@ -68,13 +69,11 @@ typedef enum e_pthread_mode
 	DETACH
 }	t_pthread_mode;
 
-typedef enum e_philo_status
+typedef enum e_fork_actions
 {
-	EATING,
-	SLEEPING,
-	THINKING,
-	DEAD
-}	t_philo_status;
+	GET_FORKS,
+	RELEASE_FORKS
+}	e_fork_actions;
 
 typedef struct s_fork
 {
@@ -90,6 +89,7 @@ typedef struct s_philo
 	size_t		meals_count;
 	size_t		since_last_meal;
 	bool		is_full;
+	bool		is_dead;
 	t_table		*table;
 }	t_philo;
 
@@ -104,6 +104,8 @@ typedef struct s_table
 	size_t	time_to_sleep;
 	size_t	meals_for_each;
 	size_t	since_start;
+	size_t	philo_meals_count;
+	bool	all_philos_are_full;
 	bool	is_finished;
 }	t_table;
 

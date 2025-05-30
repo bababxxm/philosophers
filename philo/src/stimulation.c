@@ -6,13 +6,13 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 14:03:51 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/28 18:37:40 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/30 17:32:09 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
 
-bool	print_action(t_philo *p, char *text, t_mtx *ctl);
+bool	put_action(t_philo *p, char *text, t_mtx *ctl);
 
 bool	start_stimulation(t_table *t)
 {
@@ -43,12 +43,16 @@ bool	start_stimulation(t_table *t)
 
 bool	set_stimulation_finished(t_philo *p, t_table *t)
 {
-	bool	is_dead;
+	bool	status;
 
 	mutex_mode(&t->control, LOCK);
-	is_dead = get_time_ms() - p->since_last_meal > t->time_to_die;
+	p->is_dead = (get_time_ms() - p->since_last_meal > t->time_to_die);
+	if (p->is_full == true)
+		t->philo_meals_count++;
+	t->all_philos_are_full = (t->philo_meals_count == t->philo_count);
+	status = p->is_dead == true || t->all_philos_are_full == true;
 	mutex_mode(&t->control, UNLOCK);
-	return (is_dead == true);
+	return (status);
 }
 
 bool	stimulation_is_finished(t_table	*t, t_mtx *ctl)
@@ -69,12 +73,14 @@ void	monitor_stimulation(t_table *t)
 	while (1)
 	{
 		idx = 0;
+		t->philo_meals_count = 0;
 		while (idx < t->philo_count)
 		{
 			p = &t->philo[idx];
 			if (set_stimulation_finished(p, t) == true)
 			{
-				print_action(p, "is dead", &t->control);
+				if (p->is_dead == true)
+					put_action(p, "died", &t->control);
 				mutex_mode(&t->control, LOCK);
 				t->is_finished = true;
 				mutex_mode(&t->control, UNLOCK);
@@ -86,7 +92,7 @@ void	monitor_stimulation(t_table *t)
 	}
 }
 
-bool	print_action(t_philo *p, char *text, t_mtx *ctl)
+bool	put_action(t_philo *p, char *text, t_mtx *ctl)
 {
 	size_t	now;
 	size_t	timestamp;
@@ -99,6 +105,8 @@ bool	print_action(t_philo *p, char *text, t_mtx *ctl)
 		timestamp = 0;
 	else
 		timestamp = now - p->table->since_start;
+	if (p->table->is_finished == true)
+		return (mutex_mode(ctl, UNLOCK), false);
 	printf("%zu %zu %s\n", timestamp, p->id, text);
 	mutex_mode(ctl, UNLOCK);
 	return (true);
