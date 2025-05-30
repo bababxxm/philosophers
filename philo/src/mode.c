@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:28:18 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/27 22:10:20 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/30 20:37:32 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static bool	mutex_handler(int status, int mode);
 static bool	pthread_handler(int status, int mode);
+bool		stimulation_is_finished(t_table	*t, t_mtx *ctl);
 
 /*
 
@@ -145,4 +146,19 @@ static bool	pthread_handler(int status, int mode)
 		return (write(2, "Deadlock detected\n", 18), false);
 	else
 		return (false);
+}
+
+bool	put_action(t_philo *p, char *text, t_mtx *ctl)
+{
+	size_t	timestamp;
+
+	if (stimulation_is_finished(p->table, ctl))
+		return (false);
+	mutex_mode(ctl, LOCK);
+	timestamp = get_time_ms() - p->table->since_start;
+	if (p->table->is_finished == true)
+		return (mutex_mode(ctl, UNLOCK), false);
+	printf("%zu %zu %s\n", timestamp, p->id, text);
+	mutex_mode(ctl, UNLOCK);
+	return (true);
 }

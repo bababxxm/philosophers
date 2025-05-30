@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:18:12 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/30 16:08:30 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/30 20:30:09 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,13 @@ bool	init_fork_and_philo(t_table *t)
 		t->philo[idx].table = t;
 		t->philo[idx].meals_count = 0;
 		t->philo[idx].since_last_meal = 0;
-		t->philo[idx].fork[0] = idx;
 		t->philo[idx].is_full = false;
 		t->philo[idx].is_dead = false;
+		t->philo[idx].fork[0] = idx;
 		if (idx == 0)
 			t->philo[idx].fork[1] = t->philo_count - 1;
 		else
 			t->philo[idx].fork[1] = idx - 1;
-		t->philo[idx].is_full = false;
 		idx++;
 	}
 	return (true);

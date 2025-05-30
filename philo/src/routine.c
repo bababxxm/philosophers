@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 13:48:06 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/30 17:29:31 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/30 20:25:53 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,12 +48,16 @@ static bool	philo_eat(t_philo *p, t_mtx *ctl)
 {
 	if (stimulation_is_finished(p->table, ctl))
 		return (false);
-	else if (p->is_full == true || p->is_dead == true)
-		return (false);
+	mutex_mode(ctl, LOCK);
+	if (p->is_full == true || p->is_dead == true)
+		return (mutex_mode(ctl, UNLOCK), false);
+	mutex_mode(ctl, UNLOCK);
 	if (p->id % 2 == 0)
 		usleep(100);
 	get_forks(p, ctl, GET_FORKS);
+	mutex_mode(ctl, LOCK);
 	p->since_last_meal = get_time_ms();
+	mutex_mode(ctl, UNLOCK);
 	put_action(p, "is eating", ctl);
 	sleep_ms(p->table->time_to_eat);
 	p->meals_count++;
@@ -64,23 +68,29 @@ static bool	philo_eat(t_philo *p, t_mtx *ctl)
 	return (true);
 }
 
-static void	philo_sleep(t_philo *p, t_mtx *ctl)
+static bool	philo_sleep(t_philo *p, t_mtx *ctl)
 {
 	if (stimulation_is_finished(p->table, ctl))
-		return ;
-	else if (p->is_full == true || p->is_dead == true)
-		return ;
+		return (false);
+	mutex_mode(ctl, LOCK);
+	if (p->is_full == true || p->is_dead == true)
+		return (mutex_mode(ctl, UNLOCK), false);
+	mutex_mode(ctl, UNLOCK);
 	put_action(p, "is sleeping", ctl);
 	sleep_ms(p->table->time_to_sleep);
+	return (true);
 }
 
-static void	philo_think(t_philo *p, t_mtx *ctl)
+static bool	philo_think(t_philo *p, t_mtx *ctl)
 {
 	if (stimulation_is_finished(p->table, ctl))
-		return ;
-	else if (p->is_full == true || p->is_dead == true)
-		return ;
+		return (false);
+	mutex_mode(ctl, LOCK);
+	if (p->is_full == true || p->is_dead == true)
+		return (mutex_mode(ctl, UNLOCK), false);
+	mutex_mode(ctl, UNLOCK);
 	put_action(p, "is thinking", ctl);
+	return (true);
 }
 
 void	*philo_routine(void *params)

@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:49:55 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/30 17:05:20 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/30 20:32:51 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef enum e_fork_actions
 {
 	GET_FORKS,
 	RELEASE_FORKS
-}	e_fork_actions;
+}	t_fork_actions;
 
 typedef struct s_fork
 {
@@ -116,9 +116,9 @@ bool	pthread_mode(t_pth *thread, void *(*f)(void *), void *data, int mode);
 void	*philo_routine(void *params);
 bool	start_stimulation(t_table *t);
 void	monitor_stimulation(t_table *t);
+void	end_stimulation(t_table *t);
 
 size_t	get_time_ms(void);
 void	sleep_ms(size_t ms);
-bool	broadcast(int perrno);
 
 #endif

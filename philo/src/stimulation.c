@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 14:03:51 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/30 17:32:09 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/30 20:33:46 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ bool	set_stimulation_finished(t_philo *p, t_table *t)
 	if (p->is_full == true)
 		t->philo_meals_count++;
 	t->all_philos_are_full = (t->philo_meals_count == t->philo_count);
-	status = p->is_dead == true || t->all_philos_are_full == true;
+	status = (p->is_dead == true || t->all_philos_are_full == true);
 	mutex_mode(&t->control, UNLOCK);
 	return (status);
 }
@@ -92,22 +92,17 @@ void	monitor_stimulation(t_table *t)
 	}
 }
 
-bool	put_action(t_philo *p, char *text, t_mtx *ctl)
+void	end_stimulation(t_table *t)
 {
-	size_t	now;
-	size_t	timestamp;
+	size_t	idx;
 
-	if (stimulation_is_finished(p->table, ctl))
-		return (false);
-	mutex_mode(ctl, LOCK);
-	now = get_time_ms();
-	if (now < p->table->since_start)
-		timestamp = 0;
-	else
-		timestamp = now - p->table->since_start;
-	if (p->table->is_finished == true)
-		return (mutex_mode(ctl, UNLOCK), false);
-	printf("%zu %zu %s\n", timestamp, p->id, text);
-	mutex_mode(ctl, UNLOCK);
-	return (true);
+	idx = 0;
+	while (idx < t->philo_count)
+	{
+		if (!mutex_mode(&t->fork[idx].mutex, DESTROY))
+			return ;
+		idx++;
+	}
+	free(t->philo);
+	free(t->fork);
 }
