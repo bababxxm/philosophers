@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 13:48:06 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/31 14:43:30 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/31 19:05:20 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,8 @@ static bool	philo_think(t_philo *p, t_mtx *ctl)
 		return (mutex_mode(ctl, UNLOCK), false);
 	mutex_mode(ctl, UNLOCK);
 	put_action(p, "is thinking", ctl);
-	sleep_ms(2 * p->table->time_to_eat - p->table->time_to_sleep);
+	if (p->table->philo_count % 2 != 0)
+		sleep_ms(2 * p->table->time_to_eat - p->table->time_to_sleep);
 	return (true);
 }
 

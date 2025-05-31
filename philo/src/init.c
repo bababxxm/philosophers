@@ -6,20 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:18:12 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/31 13:31:54 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/31 14:56:37 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-/*
-	Arguments:
-	1. philo_count         (1 <= count <= MAX_PHILO)
-	2. time_to_die         (0-800 ms)
-	3. time_to_eat         (0-800 ms)
-	4. time_to_sleep       (0-800 ms)
-	5. meals_for_each      (optional, default = 0)
-*/
 
 bool	init_fork_and_philo(t_table *t)
 {
