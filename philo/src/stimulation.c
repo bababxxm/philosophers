@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 14:03:51 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/31 13:53:00 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/31 14:43:43 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ bool	set_stimulation_finished(t_philo *p, t_table *t)
 	bool	status;
 
 	mutex_mode(&t->control, LOCK);
-	p->is_dead = (get_time_ms() - p->since_last_meal > t->time_to_die);
+	p->is_dead = (get_time_ms() - p->since_last_meal >= t->time_to_die);
 	if (p->is_full == true)
 		t->philo_meals_count++;
 	t->all_philos_are_full = (t->philo_meals_count == t->philo_count);
