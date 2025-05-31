@@ -6,23 +6,11 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:28:30 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/28 17:48:02 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:53:32 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "philo.h"
-
-// #if DEBUG
-// void	ft_debug(char *msg)
-// {
-// 	printf("DEBUG: %s\n", msg);
-// }
-// #else
-// void	ft_debug(char *msg)
-// {
-// 	(void)(msg);	
-// }
-// #endif
 
 long	ft_atol(const char *ptr)
 {

@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/18 13:48:06 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/30 20:42:39 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/31 14:03:09 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,22 +20,19 @@ static void	get_forks(t_philo *p, t_mtx *ctl, int mode)
 	t_fork	*f;
 
 	f = p->table->fork;
-	if (mode == GET_FORKS)
+	if (mode == GET_FORKS && p->id % 2 != 0)
 	{
-		if (p->id % 2 == 0)
-		{
-			mutex_mode(&f[p->fork[0]].mutex, LOCK);
-			put_action(p, "has taken a fork", ctl);
-			mutex_mode(&f[p->fork[1]].mutex, LOCK);
-			put_action(p, "has taken a fork", ctl);
-		}
-		else
-		{
-			mutex_mode(&f[p->fork[1]].mutex, LOCK);
-			put_action(p, "has taken a fork", ctl);
-			mutex_mode(&f[p->fork[0]].mutex, LOCK);
-			put_action(p, "has taken a fork", ctl);
-		}
+		mutex_mode(&f[p->fork[0]].mutex, LOCK);
+		put_action(p, "has taken a fork", ctl);
+		mutex_mode(&f[p->fork[1]].mutex, LOCK);
+		put_action(p, "has taken a fork", ctl);
+	}
+	else if (mode == GET_FORKS && p->id % 2 == 0)
+	{
+		mutex_mode(&f[p->fork[1]].mutex, LOCK);
+		put_action(p, "has taken a fork", ctl);
+		mutex_mode(&f[p->fork[0]].mutex, LOCK);
+		put_action(p, "has taken a fork", ctl);
 	}
 	else if (mode == RELEASE_FORKS)
 	{
@@ -100,6 +97,8 @@ void	*philo_routine(void *params)
 
 	p = (t_philo *)params;
 	t = p->table;
+	if (p->table->philo_count == 1)
+		return (put_action(p, "has taken a fork", &t->control), NULL);
 	while (!stimulation_is_finished(t, &t->control))
 	{
 		if (!philo_eat(p, &t->control))

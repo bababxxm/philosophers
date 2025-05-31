@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 16:18:12 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/30 20:30:09 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:31:54 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ bool	init_fork_and_philo(t_table *t)
 		t->fork[idx].id = idx;
 		if (!mutex_mode(&t->fork[idx].mutex, INIT))
 			return (false);
-		t->philo[idx].id = idx;
+		t->philo[idx].id = idx + 1;
 		t->philo[idx].table = t;
 		t->philo[idx].meals_count = 0;
 		t->philo[idx].since_last_meal = 0;

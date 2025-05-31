@@ -6,16 +6,12 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 15:49:55 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/30 20:32:51 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:53:26 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef PHILO_H
 # define PHILO_H
-
-// # ifndef DEBUG
-// #  define DEBUG false
-// # endif
 
 # include <unistd.h>
 # include <stdio.h>
@@ -38,21 +34,6 @@ typedef struct s_philo	t_philo;
 typedef struct s_table	t_table;
 typedef pthread_mutex_t	t_mtx;
 typedef pthread_t		t_pth;
-
-typedef enum e_philo_errno
-{
-	PERR_ARG_NON,
-	PERR_ARG_INV,
-	PERR_ARG_EMT,
-	PERR_NBR_NON,
-	PERR_PHI_CNT,
-	PERR_TME_DIE,
-	PERR_TME_EAT,
-	PERR_TME_SLP,
-	PERR_MLS_CNT,
-	PERR_MTX_MDE,
-	PERR_PTH_MDE
-}	t_philo_errno;
 
 typedef enum e_mutex_mode
 {

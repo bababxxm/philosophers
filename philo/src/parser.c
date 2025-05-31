@@ -6,7 +6,7 @@
 /*   By: sklaokli <sklaokli@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/16 21:15:19 by sklaokli          #+#    #+#             */
-/*   Updated: 2025/05/30 20:35:30 by sklaokli         ###   ########.fr       */
+/*   Updated: 2025/05/31 13:33:24 by sklaokli         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,24 +42,24 @@ static bool	parse_int(size_t *ptr, char *str, int min, int max)
 static bool	parse_args(t_table *t, int ac, char **av)
 {
 	if (!parse_int(&t->philo_count, av[0], 1, MAX_PHILO))
-		return (broadcast("invalid value for philo_count: \
-			expected 1-200 philos"));
+		return (broadcast(
+				"invalid value for philo_count: expected 1-200 philos"));
 	if (!parse_int(&t->time_to_die, av[1], MIN_MS, MAX_MS))
-		return (broadcast("invalid value for time_to_die: \
-			expected 60-800 ms"));
+		return (broadcast(
+				"invalid value for time_to_die: expected 60-800 ms"));
 	if (!parse_int(&t->time_to_eat, av[2], MIN_MS, MAX_MS))
-		return (broadcast("invalid value for time_to_eat: \
-			expected 60-800 ms"));
+		return (broadcast(
+				"invalid value for time_to_eat: expected 60-800 ms"));
 	if (!parse_int(&t->time_to_sleep, av[3], 1, MAX_MS))
-		return (broadcast("invalid value for time_to_eat: \
-			expected 60-800 ms"));
+		return (broadcast(
+				"invalid value for time_to_eat: expected 60-800 ms"));
 	if (ac != 5)
 		t->meals_for_each = -1;
 	else
 	{
 		if (!parse_int(&t->meals_for_each, av[4], 1, MAX_MEALS))
-			return (broadcast("invalid value for meals_count:\
-				 expected 1-200 meals"));
+			return (broadcast(
+					"invalid value for meals_count: expected 1-200 meals"));
 	}
 	return (true);
 }
